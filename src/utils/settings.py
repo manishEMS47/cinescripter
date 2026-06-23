@@ -4,9 +4,27 @@ from string import Template
 
 PROMPTS_PATH = os.getenv("PROMPTS_PATH", "./prompts/")
 
+# Selects which TTS provider the Audio component dispatches to.
+# Supported values: "elevenlabs", "60db" (alias: "sixtydb").
+TTS = {
+    "provider": os.getenv("TTS_PROVIDER", "elevenlabs"),
+}
+
 ELEVENLABS = {
     "voice": os.getenv("VOICE_ID"),
     "model": "eleven_multilingual_v1",
+}
+
+SIXTYDB = {
+    "api_key": os.getenv("SIXTYDB_API_KEY"),
+    "voice_id": os.getenv("SIXTYDB_VOICE_ID"),
+    "api": "https://api.60db.ai",
+    "timeout": 60,
+    "output_format": "wav",  # mp3, wav, ogg, flac
+    "speed": 1,              # 0.5 - 2.0
+    "stability": 50,         # 0 - 100 (expressiveness vs. consistency)
+    "similarity": 75,        # 0 - 100 (voice matching accuracy)
+    "enhance": True,
 }
 
 GIPHY = {
